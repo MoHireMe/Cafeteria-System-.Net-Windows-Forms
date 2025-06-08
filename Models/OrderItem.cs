@@ -13,16 +13,15 @@ namespace Models
 
         [Key] 
         public int Id { get; set; }
+        [Required]
         public int NumberOfUnits { get; set; }
+        [ForeignKey("Product")]
         public int ProductId { get; set; }
-     
-        public int CategoryId { get; set; }
-       
+        [ForeignKey("Order")]
         public int OrderId { get; set; }
 
 
         public Product Product { get; set; }
-        public Category Category { get; set; }
         public Order Order { get; set; }
     }
 }

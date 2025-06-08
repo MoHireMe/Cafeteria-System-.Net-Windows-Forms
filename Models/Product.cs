@@ -14,17 +14,19 @@ namespace Models
         public int Id { get; set; }
         [Required, StringLength(12, MinimumLength = 3)]
         public string ProductName { get; set; }
+        [Required]
         public decimal PricePerUnit { get; set; }
+        [Required]
         public decimal Cost { get; set; }
-        public string SKU { get; set; }
+        public int NumberOfUnitsInStore { get; set; }
        
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
-
-        public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
-        public virtual ICollection<Inventory> Inventories { get; set; } = new HashSet<Inventory>();
+        [Required]
+        public Category Category { get; set; }
+        [Required]
+        public virtual ICollection<OrderItem>  OrderItem { get; set; } = new HashSet<OrderItem>();
+        public Inventory Inventory { get; set; } 
 
 
 

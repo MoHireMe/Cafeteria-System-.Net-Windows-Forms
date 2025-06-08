@@ -10,16 +10,17 @@ namespace DAL.Data
 {
     public class ApplicationDbContext: DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AJSI5R\\SQLEXPRESS;Initial Catalog=\"cafitaria system\";Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            
+            optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=\"cafitaria system\";Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
             
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,23 +42,22 @@ namespace DAL.Data
                 .Property(p => p.PricePerUnit)
                 .HasPrecision(18, 2);
 
+
             modelBuilder.Entity<Inventory>()
             .HasOne(i => i.Product)
-            .WithMany(p => p.Inventories)
-            .HasForeignKey(i => i.ProductId)
+            .WithOne(p => p.Inventory)
+            .HasForeignKey<Inventory>(i => i.ProductId)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderItem>()
-             .HasOne(oi => oi.Product)
-             .WithMany(p => p.OrderItems)
-             .HasForeignKey(oi => oi.ProductId)
-             .OnDelete(DeleteBehavior.Restrict);
+            .HasIndex(oi => new { oi.ProductId , oi.OrderId})
+            .IsUnique();
 
             modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Category)
-                .WithMany(c => c.OrderItems)
-                .HasForeignKey(oi => oi.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
+             .HasOne(oi => oi.Product)
+             .WithMany(p => p.OrderItem)
+             .HasForeignKey(oi => oi.ProductId)
+             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Order)

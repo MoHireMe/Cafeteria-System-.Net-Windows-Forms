@@ -4,6 +4,7 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250608130431_Relationship_Updates")]
+    partial class Relationship_Updates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +51,9 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime2");
 
@@ -58,6 +64,8 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductId")
                         .IsUnique();
@@ -93,6 +101,9 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumberOfUnits")
                         .HasColumnType("int");
 
@@ -104,9 +115,11 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId", "OrderId")
+                    b.HasIndex("ProductId")
                         .IsUnique();
 
                     b.ToTable("OrderItem");
@@ -172,17 +185,31 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Models.Inventory", b =>
                 {
+                    b.HasOne("Models.Category", "Category")
+                        .WithMany("Inventories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Product", "Product")
                         .WithOne("Inventory")
                         .HasForeignKey("Models.Inventory", "ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Models.OrderItem", b =>
                 {
+                    b.HasOne("Models.Category", "Category")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
@@ -190,10 +217,12 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.Product", "Product")
-                        .WithMany("OrderItem")
-                        .HasForeignKey("ProductId")
+                        .WithOne("OrderItem")
+                        .HasForeignKey("Models.OrderItem", "ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("Order");
 
@@ -213,6 +242,10 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Models.Category", b =>
                 {
+                    b.Navigation("Inventories");
+
+                    b.Navigation("OrderItems");
+
                     b.Navigation("Products");
                 });
 
@@ -226,7 +259,8 @@ namespace DAL.Migrations
                     b.Navigation("Inventory")
                         .IsRequired();
 
-                    b.Navigation("OrderItem");
+                    b.Navigation("OrderItem")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
