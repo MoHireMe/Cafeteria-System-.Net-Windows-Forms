@@ -13,7 +13,7 @@ namespace DAL.Repository.Interfaces
     {
         //Get method
         Product GetProductById(int Id);
-        ICollection<Product> GetProductByName(string ProductName);
+        Product GetProductByName(string ProductName);
         ICollection<Product> GetAllProduct();
         ICollection<Product> GetProductsByCatigory(int CatigoryId);
 

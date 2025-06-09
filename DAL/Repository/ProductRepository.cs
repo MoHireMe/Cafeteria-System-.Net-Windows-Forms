@@ -22,20 +22,17 @@ namespace DAL.Repository
         {
             var product = _context.Product
                 .Include(p => p.Category)
-                .Include(p => p.Inventory)
-                .FirstOrDefault(p => p.Id == Id);
+                
+                .SingleOrDefault(p => p.Id == Id);
 
             return product;
         }
 
         //GetProductByName
-        public ICollection<Product> GetProductByName(string ProductName)
+        public Product GetProductByName(string ProductName)
         {
-            return _context.Product
-        .Include(p => p.Category)
-        .Include(p => p.Inventory)
-        .Where(p => p.ProductName.ToLower() == ProductName.ToLower())
-        .ToList();
+            return _context.Product.Include(p => p.Category).SingleOrDefault(p => p.ProductName == ProductName);
+        ;
         }
 
         //GetAllProduct
@@ -43,7 +40,7 @@ namespace DAL.Repository
         {
             return _context.Product
                 .Include(p => p.Category)
-                .Include(p => p.Inventory)
+                
                 .ToList();
         }
 
@@ -52,7 +49,7 @@ namespace DAL.Repository
         {
              return _context.Product
             .Include(p => p.Category)
-            .Include(p => p.Inventory)
+            
             .Where(p => p.CategoryId == CatigoryId)
             .ToList();
         }
@@ -96,6 +93,17 @@ namespace DAL.Repository
         {
             _context.Product.Add(product);
             _context.SaveChanges();
+        }
+
+
+        // Delete method
+        public void DeleteProduct(int ProductId)
+        {
+            var Product = _context.Product.Find(ProductId);
+
+            _context.Product.Remove(Product);
+            _context.SaveChanges();
+
         }
     }
     

@@ -12,6 +12,7 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
+        
         [Required, StringLength(12, MinimumLength = 3)]
         public string ProductName { get; set; }
         [Required]
@@ -19,6 +20,8 @@ namespace Models
         [Required]
         public decimal Cost { get; set; }
         public int NumberOfUnitsInStore { get; set; }
+        public bool IsStock { get; set; } = false;
+        public bool IsBestSeller { get; set; } = false;
        
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
