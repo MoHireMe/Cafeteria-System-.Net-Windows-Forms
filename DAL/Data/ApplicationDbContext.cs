@@ -65,6 +65,10 @@ namespace DAL.Data
                 .HasForeignKey(oi => oi.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Product>()
+           .HasIndex(p => p.ProductName)
+           .IsUnique();
+
 
         }
 

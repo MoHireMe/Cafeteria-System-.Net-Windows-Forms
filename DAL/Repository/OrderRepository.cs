@@ -23,7 +23,7 @@ namespace DAL.Repository
         {
             return _context.Order
                 .Include(o => o.OrderItems)
-                .FirstOrDefault(o => o.Id == id);
+                .SingleOrDefault(o => o.Id == id);
         }
 
         public ICollection<Order> GetAllOrders()
