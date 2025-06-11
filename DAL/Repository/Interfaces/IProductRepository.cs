@@ -24,6 +24,9 @@ namespace DAL.Repository.Interfaces
         void UpdateCategory(int productId, int CategoryId);
         
         //Add method 
-        void AddProduct(Product product);   
+        void AddProduct(Product product);
+
+        //delete
+         void DeleteProduct(int ProductId);
     }
 }
