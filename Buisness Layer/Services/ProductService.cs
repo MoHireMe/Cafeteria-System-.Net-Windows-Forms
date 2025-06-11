@@ -25,7 +25,7 @@ namespace BuisnessLayer.Services
         {
             if (id == null)
             {
-                throw Exception("Error");   
+                throw new Exception("Error");   
             }
             return _productRepository.GetProductById(id);
         }
