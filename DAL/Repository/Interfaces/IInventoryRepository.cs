@@ -22,7 +22,7 @@ namespace DAL.Repository.Interfaces
          void AddInventory(Inventory Inventory);
 
         // Delete methods
-        void DeleteInventory(Inventory inventory);
+        void DeleteInventory(int productId);
 
     }
 }

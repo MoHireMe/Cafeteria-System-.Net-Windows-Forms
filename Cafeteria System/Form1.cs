@@ -1,5 +1,8 @@
 using BuisnessLayer;
 using DAL.Data;
+using DAL.Repository.Interfaces;
+using DAL.Repository;
+using DAL;
 namespace Cafeteria_System
 {
     public partial class Form1 : Form
@@ -11,9 +14,9 @@ namespace Cafeteria_System
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           
 
 
-    
         }
     }
 }

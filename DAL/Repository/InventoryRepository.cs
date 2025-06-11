@@ -22,7 +22,7 @@ namespace DAL.Repository
         // GET methods
         public Inventory GetInventoryByProductId(int productId)
         {
-            return _context.Inventory.SingleOrDefault(i => i.ProductId == productId) ;
+            return _context.Inventory.SingleOrDefault(i => i.ProductId == productId);
         }
 
         public IEnumerable<Inventory> GetAllInventories()
@@ -54,12 +54,11 @@ namespace DAL.Repository
             _context.SaveChanges();
         }
         //Delete methods
-        public void DeleteInventory(Inventory inventory)
+        public void DeleteInventory(int productId)
         {
-                _context.Inventory.Remove(inventory);
-                _context.SaveChanges();
+            _context.Inventory.Remove(GetInventoryByProductId(productId));
+            _context.SaveChanges();
         }
-
       
     }
 }

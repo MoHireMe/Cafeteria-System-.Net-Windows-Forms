@@ -42,16 +42,11 @@ namespace DAL.Repository
             _context.SaveChanges();
         }
         // Delete methods
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(int catId)
         {
-            _context.Category.Remove(category);
+            _context.Category.Remove(GetCategoryById(catId));
             _context.SaveChanges();
         }
 
-       
-
-        
-
-       
     }
 }
