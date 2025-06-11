@@ -20,6 +20,6 @@ namespace DAL.Repository.Interfaces
         void UpdateCategory(Category category);
         
         // Delete methods
-        void DeleteCategory(Category category);
+        void DeleteCategory(int catId);
     }
 }
