@@ -13,7 +13,7 @@ namespace Models
         [Key]
         public int Id { get; set; }
         
-        [Required, StringLength(12, MinimumLength = 3)]
+        [Required, StringLength(100, MinimumLength = 3)]
         public string ProductName { get; set; }
         [Required]
         public decimal PricePerUnit { get; set; }

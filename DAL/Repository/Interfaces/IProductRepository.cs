@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repository.Interfaces
 {
@@ -14,8 +15,9 @@ namespace DAL.Repository.Interfaces
         //Get method
         Product GetProductById(int Id);
         Product GetProductByName(string ProductName);
-        ICollection<Product> GetAllProduct();
-        ICollection<Product> GetProductsByCatigory(int CatigoryId);
+    ICollection<Product> GetAllProduct();
+
+        // ICollection<Product> GetProductsByCatigory(int CatigoryId);
 
         //Update method
         void UpdatePricePerUnit(int productId,decimal PricePerUnit);
@@ -28,5 +30,7 @@ namespace DAL.Repository.Interfaces
 
         //delete
          void DeleteProduct(int ProductId);
+        List<Product> GetProductsByCategoryId(int categoryId);
+
     }
 }

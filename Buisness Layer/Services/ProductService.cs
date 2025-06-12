@@ -38,18 +38,11 @@ namespace BuisnessLayer.Services
             return product;
         }
 
-        public ICollection<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllProducts()
         {
             return _productRepository.GetAllProduct();
         }
 
-        public ICollection<Product> GetProductsByCategory(int categoryId)
-        {
-            if (categoryId <= 0)
-                throw new ArgumentException("Invalid category ID.");
-
-            return _productRepository.GetProductsByCatigory(categoryId);
-        }
 
         public void UpdatePricePerUnit(int productId, decimal pricePerUnit)
         {
@@ -131,7 +124,10 @@ namespace BuisnessLayer.Services
             _productRepository.DeleteProduct(productId);
         }
 
-        // Helper method to ensure product exists
+        public List<Product> GetProductsByCategoryId(int categoryId)
+        {
+            return _productRepository.GetProductsByCategoryId(categoryId);
+        }
         private void EnsureProductExists(int productId)
         {
             var product = _productRepository.GetProductById(productId);

@@ -28,39 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CmbCaterory = new ComboBox();
-            dataGridView1 = new DataGridView();
+            cmbCategory = new ComboBox();
+            dataGridViewOrderItems = new DataGridView();
             btnAdd = new Button();
-            btnDelete = new Button();
-            dataGridView2 = new DataGridView();
+            dataGridViewProducts = new DataGridView();
             btnCheckout = new Button();
-            numericUpDown1 = new NumericUpDown();
-            label1 = new Label();
+            nudQuantity = new NumericUpDown();
+            lblTotal = new Label();
             label3 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOrderItems).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
             SuspendLayout();
             // 
-            // CmbCaterory
+            // cmbCategory
             // 
-            CmbCaterory.BackColor = SystemColors.ControlLightLight;
-            CmbCaterory.ForeColor = Color.DarkRed;
-            CmbCaterory.FormattingEnabled = true;
-            CmbCaterory.Location = new Point(366, 66);
-            CmbCaterory.Name = "CmbCaterory";
-            CmbCaterory.Size = new Size(369, 33);
-            CmbCaterory.TabIndex = 1;
+            cmbCategory.BackColor = SystemColors.ControlLightLight;
+            cmbCategory.ForeColor = Color.DarkRed;
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.Location = new Point(243, 73);
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(369, 33);
+            cmbCategory.TabIndex = 1;
+            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged_1;
             // 
-            // dataGridView1
+            // dataGridViewOrderItems
             // 
-            dataGridView1.BackgroundColor = Color.RosyBrown;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(893, 108);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(360, 397);
-            dataGridView1.TabIndex = 2;
+            dataGridViewOrderItems.BackgroundColor = Color.RosyBrown;
+            dataGridViewOrderItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewOrderItems.Location = new Point(668, 132);
+            dataGridViewOrderItems.Name = "dataGridViewOrderItems";
+            dataGridViewOrderItems.RowHeadersWidth = 62;
+            dataGridViewOrderItems.Size = new Size(585, 397);
+            dataGridViewOrderItems.TabIndex = 2;
             // 
             // btnAdd
             // 
@@ -72,27 +72,17 @@
             btnAdd.TabIndex = 3;
             btnAdd.Text = "Add to order";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
-            // btnDelete
+            // dataGridViewProducts
             // 
-            btnDelete.BackColor = Color.LightCoral;
-            btnDelete.Location = new Point(588, 626);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(164, 68);
-            btnDelete.TabIndex = 4;
-            btnDelete.Text = "Delete from order";
-            btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.BackgroundColor = Color.RosyBrown;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(45, 132);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(707, 454);
-            dataGridView2.TabIndex = 5;
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridViewProducts.BackgroundColor = Color.RosyBrown;
+            dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewProducts.Location = new Point(45, 132);
+            dataGridViewProducts.Name = "dataGridViewProducts";
+            dataGridViewProducts.RowHeadersWidth = 62;
+            dataGridViewProducts.Size = new Size(530, 454);
+            dataGridViewProducts.TabIndex = 5;
             // 
             // btnCheckout
             // 
@@ -103,26 +93,27 @@
             btnCheckout.TabIndex = 6;
             btnCheckout.Text = "Checkout";
             btnCheckout.UseVisualStyleBackColor = false;
+            btnCheckout.Click += btnCheckout_Click;
             // 
-            // numericUpDown1
+            // nudQuantity
             // 
-            numericUpDown1.Location = new Point(287, 646);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(152, 31);
-            numericUpDown1.TabIndex = 7;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            nudQuantity.BackColor = Color.White;
+            nudQuantity.ForeColor = Color.DarkRed;
+            nudQuantity.Location = new Point(271, 646);
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(160, 31);
+            nudQuantity.TabIndex = 7;
             // 
-            // label1
+            // lblTotal
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11F);
-            label1.ForeColor = Color.DarkRed;
-            label1.Location = new Point(893, 571);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 30);
-            label1.TabIndex = 8;
-            label1.Text = "Checkout";
-            label1.Click += label1_Click;
+            lblTotal.AutoSize = true;
+            lblTotal.Font = new Font("Segoe UI", 11F);
+            lblTotal.ForeColor = Color.DarkRed;
+            lblTotal.Location = new Point(893, 571);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(104, 30);
+            lblTotal.TabIndex = 8;
+            lblTotal.Text = "Checkout";
             // 
             // label3
             // 
@@ -130,7 +121,7 @@
             label3.BackColor = Color.Snow;
             label3.Font = new Font("Segoe UI", 12F);
             label3.ForeColor = Color.Maroon;
-            label3.Location = new Point(78, 67);
+            label3.Location = new Point(34, 70);
             label3.Name = "label3";
             label3.Size = new Size(181, 32);
             label3.TabIndex = 10;
@@ -142,35 +133,33 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1346, 750);
             Controls.Add(label3);
-            Controls.Add(label1);
-            Controls.Add(numericUpDown1);
+            Controls.Add(lblTotal);
+            Controls.Add(nudQuantity);
             Controls.Add(btnCheckout);
-            Controls.Add(dataGridView2);
-            Controls.Add(btnDelete);
+            Controls.Add(dataGridViewProducts);
             Controls.Add(btnAdd);
-            Controls.Add(dataGridView1);
-            Controls.Add(CmbCaterory);
+            Controls.Add(dataGridViewOrderItems);
+            Controls.Add(cmbCategory);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewOrderItems).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox CmbCaterory;
-        private DataGridView dataGridView1;
+        private ComboBox cmbCategory;
+        private DataGridView dataGridViewOrderItems;
         private Button btnAdd;
-        private Button btnDelete;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridViewProducts;
         private Button btnCheckout;
-        private NumericUpDown numericUpDown1;
-        private Label label1;
+        private NumericUpDown nudQuantity;
+        private Label lblTotal;
         private Label label3;
     }
 }

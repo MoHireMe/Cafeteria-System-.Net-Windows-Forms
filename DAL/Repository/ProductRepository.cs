@@ -45,14 +45,13 @@ namespace DAL.Repository
         }
 
         //GetProductsByCatigory
-        public ICollection<Product> GetProductsByCatigory(int CatigoryId)
+        public List<Product> GetProductsByCategoryId(int categoryId)
         {
-             return _context.Product
-            .Include(p => p.Category)
-            
-            .Where(p => p.CategoryId == CatigoryId)
-            .ToList();
+            return _context.Product
+                .Where(p => p.CategoryId == categoryId)
+                .ToList();
         }
+
 
         //UpdatePricePerUnit
         public void UpdatePricePerUnit(int productId, decimal PricePerUnit)
